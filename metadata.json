@@ -1,0 +1,8 @@
+{
+  "name": "Remix Google Drive Files",
+  "description": "List, view, and delete Google Drive files owned by you with multi-selection support, sorted by last modified time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
