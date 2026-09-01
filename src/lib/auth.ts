@@ -21,8 +21,8 @@ provider.setCustomParameters({
 
 // Flag to indicate if we are in the middle of a sign-in flow
 let isSigningIn = false;
-// Cache the access token in memory (never in localStorage/sessionStorage)
-let cachedAccessToken: string | null = null;
+// Cache the access token in sessionStorage so refreshes do not require re-authentication
+let cachedAccessToken: string | null = sessionStorage.getItem('drive_app_access_token');
 
 export const initAuth = (
   onAuthSuccess?: (user: User, token: string) => void,
@@ -30,15 +30,20 @@ export const initAuth = (
 ) => {
   return onAuthStateChanged(auth, async (user: User | null) => {
     if (user) {
+      if (!cachedAccessToken) {
+        cachedAccessToken = sessionStorage.getItem('drive_app_access_token');
+      }
       if (cachedAccessToken) {
         if (onAuthSuccess) onAuthSuccess(user, cachedAccessToken);
       } else if (!isSigningIn) {
         // Need user interaction to get fresh access token with scopes
         cachedAccessToken = null;
+        sessionStorage.removeItem('drive_app_access_token');
         if (onAuthFailure) onAuthFailure();
       }
     } else {
       cachedAccessToken = null;
+      sessionStorage.removeItem('drive_app_access_token');
       if (onAuthFailure) onAuthFailure();
     }
   });
@@ -54,6 +59,7 @@ export const googleSignIn = async (): Promise<{ user: User; accessToken: string 
     }
 
     cachedAccessToken = credential.accessToken;
+    sessionStorage.setItem('drive_app_access_token', cachedAccessToken);
     return { user: result.user, accessToken: cachedAccessToken };
   } catch (error: unknown) {
     console.error('Sign in error:', error);
@@ -70,4 +76,5 @@ export const getAccessToken = (): string | null => {
 export const logout = async (): Promise<void> => {
   await signOut(auth);
   cachedAccessToken = null;
+  sessionStorage.removeItem('drive_app_access_token');
 };
