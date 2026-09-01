@@ -169,8 +169,16 @@ export default function App() {
         setToken(result.accessToken);
       }
     } catch (err: unknown) {
-      const msg =
-        err instanceof Error ? err.message : 'Google sign-in failed. Please try again.';
+      const errCode = (err as { code?: string })?.code || '';
+      const errMessage = err instanceof Error ? err.message : String(err);
+      
+      let msg = 'Google sign-in failed. Please try again.';
+      if (errCode === 'auth/unauthorized-domain' || errMessage.includes('unauthorized-domain')) {
+        const currentDomain = window.location.hostname;
+        msg = `Firebase Error (auth/unauthorized-domain): The current domain ("${currentDomain}") is not authorized in your Firebase project. To fix this, go to your Firebase Console > Authentication > Settings > Authorized domains, and click "Add domain" to add "${currentDomain}".`;
+      } else if (errMessage) {
+        msg = errMessage;
+      }
       setAuthError(msg);
     } finally {
       setIsSigningIn(false);

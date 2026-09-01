@@ -19,35 +19,35 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onSignIn, isLoading, err
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
             Google Drive File Explorer
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
             View, sort by last modified time, and filter your Google Drive files by MIME type.
           </p>
         </div>
 
         {/* Features Checklist */}
-        <div className="bg-slate-50/90 dark:bg-slate-855/60 rounded-2xl p-4 mb-6 border border-slate-200/80 dark:border-slate-700/80 space-y-3">
+        <div className="bg-slate-50 dark:bg-slate-800/90 rounded-2xl p-5 mb-6 border border-slate-200 dark:border-slate-700 space-y-3.5 shadow-xs">
           <div className="flex items-start gap-3">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" />
-            <span className="text-xs text-slate-700 dark:text-slate-300">
-              <strong className="text-slate-900 dark:text-slate-100">Owned by me:</strong> Lists only files owned directly by your account.
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" />
+            <span className="text-sm text-slate-800 dark:text-slate-200">
+              <strong className="font-semibold text-slate-900 dark:text-white">Owned by me:</strong> Lists only files owned directly by your account.
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <ArrowUpDown className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" />
-            <span className="text-xs text-slate-700 dark:text-slate-300">
-              <strong className="text-slate-900 dark:text-slate-100">Sorted by write time:</strong> Real-time ordering by last modified timestamp.
+            <ArrowUpDown className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" />
+            <span className="text-sm text-slate-800 dark:text-slate-200">
+              <strong className="font-semibold text-slate-900 dark:text-white">Sorted by write time:</strong> Real-time ordering by last modified timestamp.
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <Filter className="w-4 h-4 text-purple-600 dark:text-purple-400 mt-0.5 shrink-0" />
-            <span className="text-xs text-slate-700 dark:text-slate-300">
-              <strong className="text-slate-900 dark:text-slate-100">MIME Type Filtering:</strong> Filter by Docs, Sheets, Slides, PDFs, or custom types.
+            <Filter className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 shrink-0" />
+            <span className="text-sm text-slate-800 dark:text-slate-200">
+              <strong className="font-semibold text-slate-900 dark:text-white">MIME Type Filtering:</strong> Filter by Docs, Sheets, Slides, PDFs, or custom types.
             </span>
           </div>
           <div className="flex items-start gap-3">
-            <ShieldCheck className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
-            <span className="text-xs text-slate-700 dark:text-slate-300">
-              <strong className="text-slate-900 dark:text-slate-100">Multi-Select & Delete:</strong> Select and safely trash or permanently erase unwanted files.
+            <ShieldCheck className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+            <span className="text-sm text-slate-800 dark:text-slate-200">
+              <strong className="font-semibold text-slate-900 dark:text-white">Multi-Select & Delete:</strong> Select and safely trash or permanently erase unwanted files.
             </span>
           </div>
         </div>
